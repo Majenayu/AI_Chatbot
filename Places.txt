@@ -1,0 +1,100 @@
+palace to zoo:
+hotels: 
+1.amazins maharaja grand biriyani n kitchen
+2.hotel international
+3.hotel new mysore refreshments
+4.purple multi cuisine restaurant
+5.2 states veg restaurant
+
+Tea stalls/cafe:
+1.hotel cafe mysore
+2.cuppa redefined 
+3.barista bean coffee
+4.lol
+5.sandy's cafe
+
+
+Chamundi hiils to mysore palace:
+Hotels:
+1.sepoy's pirangi
+2.Supriya restaurant
+3.Ashirvaad grand pure veg restaurant
+4.highpark revolving restaurant
+5.Dynasty
+
+Tea stalls/cafe:
+1.Mud Coffee
+2.coffe katte
+3.mysore coffee works
+4.kitta's kikkeri chai Agrahara
+5.mysuru coffee hub
+
+
+Palace to varuna lake:
+Hotels:
+1.Gufha restaurant Mysuru
+2.Lemon three restaurant
+3.The grand mysore Nandhini Andhra style restaurant
+4.My big daddy's kitchen
+5.sepoy's pirangi
+
+Tea stalls/cafe:
+1.Kings's coffee
+2.barista bean coffee
+3.cuppa redefined 
+4.hosur coffee
+5.cafe mysore
+
+
+Mysore zoo to varuna lake:
+Hotels:
+1.Le olive garden mysore
+2.Lemon three restaurant
+3.The grand mysore Nandhini Andhra style restaurant
+4.My big daddy's kitchen
+5.sepoy's pirangi
+
+Tea stalls/Cafe:
+1.coffee junction
+2.Kings's coffee
+3.barista bean coffee
+4.hosur coffee
+5.cafe mysore
+
+
+chamundi hills to zoo:
+Hotels:
+1.Annadhasoha bhavana
+2.sri chamundi Krupa
+3.Mr cool goli soda
+4.hotel chamundeshwari Krupa 
+5.chamundi tiffen hotel
+
+Tea stalls/cafe:
+1.sreedar coffee
+2.Deepu coffee tea shop and juice corner 
+3.King' coffee
+4.Baa guru tea kusi chamundi hills
+5.bettada geleya
+
+
+Chamundi hills to varuna lake:
+Hotels:
+1.2 states veg restaurant
+2.MySouth
+3.amazins maharaja grand biriyani n kitchen
+4.cuppa redefined 
+5.Hotel anand bhavan
+
+Tea stalls/Cafe:
+1.coffe katte
+2.MDP coffee house
+3.cafe mysore
+4.lol
+5.Barista bean shop
+
+
+
+
+
+

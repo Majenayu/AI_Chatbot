@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mysore Travel Bot</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #d0f5c8, #0b3312);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      padding: 20px;
+      color: #000;
+      background: transparent;
+    }
+
+    #chat {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .user, .bot {
+      max-width: 80%;
+      padding: 14px 18px;
+      border-radius: 20px;
+      font-size: 1.1rem;
+      line-height: 1.5;
+      word-wrap: break-word;
+    }
+
+    .user {
+      align-self: flex-end;
+      background-color: #d3fdd3;
+      border-bottom-right-radius: 0;
+      color: #000;
+    }
+
+    .bot {
+      align-self: flex-start;
+      background-color: #4CAF50;
+      border-bottom-left-radius: 0;
+      color: #fff;
+    }
+
+    .bot pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin: 0;
+      font-family: inherit;
+    }
+
+    .input-area {
+      padding: 16px;
+      background-color: #111;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .input-area input {
+      padding: 14px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      width: 100%;
+    }
+
+    .input-area button {
+      padding: 14px;
+      font-size: 1rem;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .input-area button:hover {
+      background-color: #3e9442;
+    }
+
+    /* 🔄 Desktop Enhancement */
+    @media (min-width: 600px) {
+      body {
+        max-width: 600px;
+        margin: auto;
+      }
+
+      .input-area {
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .input-area input {
+        flex: 2;
+      }
+
+      .input-area button {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>Mysore Travel Assistant 🤖</header>
+
+  <div id="chat"></div>
+
+  <div class="input-area">
+    <input type="text" id="message" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+    <button onclick="downloadPDF()">Download as PDF</button>
+    <button onclick="downloadTableOnly()">Download Timetable Only</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script>
+    async function sendMessage() {
+      const input = document.getElementById("message");
+      const chat = document.getElementById("chat");
+      const msg = input.value;
+      if (!msg) return;
+
+      chat.innerHTML += `<div class="user">You: ${msg}</div>`;
+      input.value = "";
+
+      const res = await fetch("http://localhost:5000/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: msg })
+      });
+
+      const data = await res.json();
+      chat.innerHTML += `<div class="bot">Bot:<pre>${data.reply}</pre></div>`;
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    async function downloadPDF() {
+      const chatText = document.getElementById("chat").innerText;
+      const doc = new jspdf.jsPDF({ format: "a4", unit: "mm" });
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(12);
+      const lines = doc.splitTextToSize(chatText, 180);
+      doc.text(lines, 15, 20);
+      doc.save("mysore-travel-plan.pdf");
+    }
+
+    async function downloadTableOnly() {
+      const allBots = Array.from(document.querySelectorAll(".bot pre"));
+      if (allBots.length === 0) {
+        alert("No bot message found!");
+        return;
+      }
+
+      const lastBot = allBots[allBots.length - 1].innerText
+        .replace(/₹/g, "Rs.")
+        .replace(/[^\x00-\x7F]/g, "");
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ format: "a4", unit: "mm" });
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(12);
+      const lines = doc.splitTextToSize(lastBot, 180);
+      doc.text(lines, 15, 20);
+      doc.save("mysore-timetable.pdf");
+    }
+  </script>
+</body>
+</html>
