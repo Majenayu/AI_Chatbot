@@ -9,11 +9,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // ✅ Gemini API key from Google Cloud
-const genAI = new GoogleGenerativeAI("AIzaSyCrwIXrHA8gdQBVD9Z0JMMirncgFTrYTtQ");
-
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
 // ✅ MongoDB connection
-const MONGO_URI = "mongodb+srv://ayu:ayu@cluster0.1ieog.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-mongoose.connect(MONGO_URI)
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB connected"))
   .catch(err => console.log("❌ MongoDB error", err));
 
