@@ -30,6 +30,27 @@ const Route = mongoose.model("Route", RouteSchema);
 // ✅ Chat endpoint
 app.post("/chat", async (req, res) => {
   const { message } = req.body;
+
+
+  const lowerMsg = message.toLowerCase().trim();
+
+  // ✅ Casual greetings and human-style replies
+  const casualReplies = {
+    "hi": "Hey there! 👋 How can I help you plan your day in Mysore?",
+    "hello": "Hello! 😊 Looking for some travel suggestions in Mysore?",
+    "hey": "Hey! Need help exploring Mysore?",
+    "good morning": "Good morning! Ready to plan a lovely day in Mysore?",
+    "good evening": "Good evening! Want a peaceful Mysore itinerary?",
+    "how are you": "I'm doing great! Excited to help you plan your day. 😊"
+  };
+
+  // ✅ If casual greeting, respond immediately
+  if (casualReplies[lowerMsg]) {
+    return res.json({ reply: casualReplies[lowerMsg] });
+  }
+
+
+  
   const routes = await Route.find({});
 
   const context = routes.map(r =>
